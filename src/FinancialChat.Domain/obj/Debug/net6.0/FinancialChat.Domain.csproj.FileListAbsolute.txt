@@ -1,0 +1,12 @@
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Domain\bin\Debug\net6.0\FinancialChat.Domain.deps.json
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Domain\bin\Debug\net6.0\FinancialChat.Domain.dll
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Domain\bin\Debug\net6.0\FinancialChat.Domain.pdb
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Domain\obj\Debug\net6.0\FinancialChat.Domain.csproj.AssemblyReference.cache
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Domain\obj\Debug\net6.0\FinancialChat.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Domain\obj\Debug\net6.0\FinancialChat.Domain.AssemblyInfoInputs.cache
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Domain\obj\Debug\net6.0\FinancialChat.Domain.AssemblyInfo.cs
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Domain\obj\Debug\net6.0\FinancialChat.Domain.csproj.CoreCompileInputs.cache
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Domain\obj\Debug\net6.0\FinancialChat.Domain.dll
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Domain\obj\Debug\net6.0\refint\FinancialChat.Domain.dll
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Domain\obj\Debug\net6.0\FinancialChat.Domain.pdb
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Domain\obj\Debug\net6.0\ref\FinancialChat.Domain.dll

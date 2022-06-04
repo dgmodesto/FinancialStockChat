@@ -1,0 +1,15 @@
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Data\bin\Debug\net6.0\FinancialChat.Data.deps.json
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Data\bin\Debug\net6.0\FinancialChat.Data.dll
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Data\bin\Debug\net6.0\FinancialChat.Data.pdb
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Data\bin\Debug\net6.0\FinancialChat.CrossCutting.dll
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Data\bin\Debug\net6.0\FinancialChat.CrossCutting.pdb
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Data\obj\Debug\net6.0\FinancialChat.Data.csproj.AssemblyReference.cache
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Data\obj\Debug\net6.0\FinancialChat.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Data\obj\Debug\net6.0\FinancialChat.Data.AssemblyInfoInputs.cache
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Data\obj\Debug\net6.0\FinancialChat.Data.AssemblyInfo.cs
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Data\obj\Debug\net6.0\FinancialChat.Data.csproj.CoreCompileInputs.cache
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Data\obj\Debug\net6.0\FinancialChat.Data.csproj.CopyComplete
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Data\obj\Debug\net6.0\FinancialChat.Data.dll
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Data\obj\Debug\net6.0\refint\FinancialChat.Data.dll
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Data\obj\Debug\net6.0\FinancialChat.Data.pdb
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Data\obj\Debug\net6.0\ref\FinancialChat.Data.dll

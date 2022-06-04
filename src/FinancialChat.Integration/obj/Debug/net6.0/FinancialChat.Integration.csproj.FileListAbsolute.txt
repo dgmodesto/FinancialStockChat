@@ -1,0 +1,15 @@
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Integration\bin\Debug\net6.0\FinancialChat.Integration.deps.json
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Integration\bin\Debug\net6.0\FinancialChat.Integration.dll
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Integration\bin\Debug\net6.0\FinancialChat.Integration.pdb
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Integration\bin\Debug\net6.0\FinancialChat.CrossCutting.dll
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Integration\bin\Debug\net6.0\FinancialChat.CrossCutting.pdb
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Integration\obj\Debug\net6.0\FinancialChat.Integration.csproj.AssemblyReference.cache
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Integration\obj\Debug\net6.0\FinancialChat.Integration.GeneratedMSBuildEditorConfig.editorconfig
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Integration\obj\Debug\net6.0\FinancialChat.Integration.AssemblyInfoInputs.cache
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Integration\obj\Debug\net6.0\FinancialChat.Integration.AssemblyInfo.cs
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Integration\obj\Debug\net6.0\FinancialChat.Integration.csproj.CoreCompileInputs.cache
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Integration\obj\Debug\net6.0\FinancialChat.Integration.csproj.CopyComplete
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Integration\obj\Debug\net6.0\FinancialChat.Integration.dll
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Integration\obj\Debug\net6.0\refint\FinancialChat.Integration.dll
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Integration\obj\Debug\net6.0\FinancialChat.Integration.pdb
+C:\labs\dotnetcore\finacial-chat-challenge\FinancialChatBackend\src\FinancialChat.Integration\obj\Debug\net6.0\ref\FinancialChat.Integration.dll

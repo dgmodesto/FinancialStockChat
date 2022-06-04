@@ -1,0 +1,51 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Welcome at the Financial Stock Chat";
+}
+<div class="container-fluid">
+
+    <div class="container-fluid h-25">
+         
+    </div>
+    <div id="chat" class="card">
+      <div class="card-header">
+        Chat
+      </div>
+      <div class="card-body">
+       <div class="form-row ">
+             <div class="col-12">
+                 <ul id="messagesList" class="list-group">
+
+                 </ul>
+             </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row my-3">
+          <label for="validationCustom01">Receiver</label>
+         <div class="col-8 form-control">@Html.DropDownList("receiver",Model.Users, new { @class = "form-control"})</div>
+    </div>
+
+     
+     <div class="form-row my-3 d-flex justify-content-between bg-light p-4">
+        <div class="col-md-8 ">
+            <label for="message">Message</label>
+            <input type="text" class="form-control" id="message" placeholder="input something here"  required>
+        </div>
+
+        <div class="col-md-2 mt-4">
+             <input type="button" class="btn btn-primary" id="sendMessage" value="Send Message" />
+         </div>
+    </div>
+
+</div>
+​
+@Html.Hidden("sender", Model.MyUser) <!--Current logged in username-->
+​
+@section Scripts
+{
+    <script src="~/js/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/stockChat.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,59 @@
+version: '3.4'
+
+networks:
+    financial_chat-network:
+        name: financial_chat-network
+        driver: bridge
+
+volumes:
+  db_volume:
+
+services:
+    # financial_chat_service:
+    #     image: financial_chat_service:latest
+    #     container_name: financial_chat_service
+    #     depends_on:
+    #         - "financial_chat_rabbitmq"
+    #     build:
+    #         context: .
+    #         dockerfile: src/TeleCurso.Api/Dockerfile
+    #     ports:
+    #         - "8090:80"
+    #     environment:
+    #         DB_CONNECTION_STRING: "host=financial_chat_inmemorry_db;port=5432;database=telecursoDB;username=postgres;password=postgres@2021"
+    #         RABBITMQ_CONNECTION: "rabbitmq://financial_chat_rabbitmq:5672"
+    #         REVENUE_KINDS_QUEUE: "financialChatStockQueue"
+    #     networks:
+    #         - financial_chat-network
+
+    # financial_chat_consumer:
+    #     image: financial_chat_consumer:latest
+    #     container_name: financial_chat_consumer
+    #     depends_on:
+    #         - "financial_chat_rabbitmq"
+    #     build:
+    #         context: .
+    #         dockerfile: src/TeleCurso.Api/Dockerfile
+    #     ports:
+    #         - "8090:80"
+    #     environment:
+    #         DB_CONNECTION_STRING: "host=financial_chat_inmemorry_db;port=5432;database=telecursoDB;username=postgres;password=postgres@2021"
+    #         RABBITMQ_CONNECTION: "rabbitmq://financial_chat_rabbitmq:5672"
+    #         REVENUE_KINDS_QUEUE: "financialChatStockQueue"
+    #     networks:
+    #         - financial_chat_rabbitmq-network
+
+    financial_chat_rabbitmq:
+        image: masstransit/rabbitmq
+        container_name: financial_chat_rabbitmq
+        labels:
+          NAME: "financial_chat_rabbitmq"
+        hostname: financial_chat_rabbitmq
+        ports:
+          - 5672:5672
+          - 15672:15672
+        volumes:
+          - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+          - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+        networks:
+          - financial_chat-network

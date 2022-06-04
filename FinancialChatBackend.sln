@@ -1,0 +1,89 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinancialChat.Web", "src\FinancialChat.Web\FinancialChat.Web.csproj", "{94C046A1-728A-413D-A818-31486B4E7BE3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinancialChat.Consumer", "src\FinancialChat.Consumer\FinancialChat.Consumer.csproj", "{A50110A2-E5CB-4606-BDE6-CC5210996014}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{4B54099E-A512-44A5-8D08-9AD8ABAB457B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Consumer", "Consumer", "{E53AA57A-D2B6-43AE-A1BC-519ED39C56FA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinancialChat.Application", "src\FinancialChat.Application\FinancialChat.Application.csproj", "{F33BB5CC-7A48-4C42-860D-CAD9FDE93509}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinancialChat.Integration", "src\FinancialChat.Integration\FinancialChat.Integration.csproj", "{B97D965C-71C0-4A1F-B688-E2799675D6B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{37DDFA79-F17E-4552-AF6D-58307E5C15EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{1D618DD6-F11F-4EFE-905B-C9D6A019A678}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinancialChat.Domain", "src\FinancialChat.Domain\FinancialChat.Domain.csproj", "{79C3E690-915E-4E9D-9BF2-EA05C434363D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{DBBFE2BA-3BBE-47AA-B666-74A9561C8FD9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ED9050D3-1A08-4AAE-ABE4-8A030E700F33}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinancialChat.IoC", "src\FinancialChat.IoC\FinancialChat.IoC.csproj", "{9BD0E299-8B48-463D-BCF1-A1C89BF26BDA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoC", "IoC", "{C1F9936F-7EBA-49B8-9C12-7AF930671464}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinancialChat.CrossCutting", "src\FinancialChat.CrossCutting\FinancialChat.CrossCutting.csproj", "{ED33980C-523E-4485-BA25-41FA725347C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCutting", "{67A42B4D-8BD1-4B6A-833D-F80CC34D1B39}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94C046A1-728A-413D-A818-31486B4E7BE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94C046A1-728A-413D-A818-31486B4E7BE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94C046A1-728A-413D-A818-31486B4E7BE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94C046A1-728A-413D-A818-31486B4E7BE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A50110A2-E5CB-4606-BDE6-CC5210996014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A50110A2-E5CB-4606-BDE6-CC5210996014}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A50110A2-E5CB-4606-BDE6-CC5210996014}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A50110A2-E5CB-4606-BDE6-CC5210996014}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F33BB5CC-7A48-4C42-860D-CAD9FDE93509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F33BB5CC-7A48-4C42-860D-CAD9FDE93509}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F33BB5CC-7A48-4C42-860D-CAD9FDE93509}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F33BB5CC-7A48-4C42-860D-CAD9FDE93509}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B97D965C-71C0-4A1F-B688-E2799675D6B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B97D965C-71C0-4A1F-B688-E2799675D6B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B97D965C-71C0-4A1F-B688-E2799675D6B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B97D965C-71C0-4A1F-B688-E2799675D6B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79C3E690-915E-4E9D-9BF2-EA05C434363D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C3E690-915E-4E9D-9BF2-EA05C434363D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C3E690-915E-4E9D-9BF2-EA05C434363D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C3E690-915E-4E9D-9BF2-EA05C434363D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BD0E299-8B48-463D-BCF1-A1C89BF26BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BD0E299-8B48-463D-BCF1-A1C89BF26BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BD0E299-8B48-463D-BCF1-A1C89BF26BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BD0E299-8B48-463D-BCF1-A1C89BF26BDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED33980C-523E-4485-BA25-41FA725347C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED33980C-523E-4485-BA25-41FA725347C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED33980C-523E-4485-BA25-41FA725347C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED33980C-523E-4485-BA25-41FA725347C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{94C046A1-728A-413D-A818-31486B4E7BE3} = {4B54099E-A512-44A5-8D08-9AD8ABAB457B}
+		{A50110A2-E5CB-4606-BDE6-CC5210996014} = {E53AA57A-D2B6-43AE-A1BC-519ED39C56FA}
+		{F33BB5CC-7A48-4C42-860D-CAD9FDE93509} = {37DDFA79-F17E-4552-AF6D-58307E5C15EB}
+		{B97D965C-71C0-4A1F-B688-E2799675D6B8} = {1D618DD6-F11F-4EFE-905B-C9D6A019A678}
+		{79C3E690-915E-4E9D-9BF2-EA05C434363D} = {DBBFE2BA-3BBE-47AA-B666-74A9561C8FD9}
+		{9BD0E299-8B48-463D-BCF1-A1C89BF26BDA} = {C1F9936F-7EBA-49B8-9C12-7AF930671464}
+		{ED33980C-523E-4485-BA25-41FA725347C9} = {67A42B4D-8BD1-4B6A-833D-F80CC34D1B39}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {965CBDB2-E18E-4044-B2F4-7018912CEC35}
+	EndGlobalSection
+EndGlobal
