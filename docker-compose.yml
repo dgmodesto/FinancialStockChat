@@ -1,47 +1,63 @@
 version: '3.4'
 
 networks:
-    financial_chat-network:
-        name: financial_chat-network
+    financial_chat_network:
+        name: financial_chat_network
         driver: bridge
 
 volumes:
   db_volume:
 
 services:
-    # financial_chat_service:
-    #     image: financial_chat_service:latest
-    #     container_name: financial_chat_service
-    #     depends_on:
-    #         - "financial_chat_rabbitmq"
-    #     build:
-    #         context: .
-    #         dockerfile: src/TeleCurso.Api/Dockerfile
-    #     ports:
-    #         - "8090:80"
-    #     environment:
-    #         DB_CONNECTION_STRING: "host=financial_chat_inmemorry_db;port=5432;database=telecursoDB;username=postgres;password=postgres@2021"
-    #         RABBITMQ_CONNECTION: "rabbitmq://financial_chat_rabbitmq:5672"
-    #         REVENUE_KINDS_QUEUE: "financialChatStockQueue"
-    #     networks:
-    #         - financial_chat-network
 
-    # financial_chat_consumer:
-    #     image: financial_chat_consumer:latest
-    #     container_name: financial_chat_consumer
-    #     depends_on:
-    #         - "financial_chat_rabbitmq"
-    #     build:
-    #         context: .
-    #         dockerfile: src/TeleCurso.Api/Dockerfile
-    #     ports:
-    #         - "8090:80"
-    #     environment:
-    #         DB_CONNECTION_STRING: "host=financial_chat_inmemorry_db;port=5432;database=telecursoDB;username=postgres;password=postgres@2021"
-    #         RABBITMQ_CONNECTION: "rabbitmq://financial_chat_rabbitmq:5672"
-    #         REVENUE_KINDS_QUEUE: "financialChatStockQueue"
-    #     networks:
-    #         - financial_chat_rabbitmq-network
+    sql_server:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        environment:
+          - SA_PASSWORD=Pass@word
+          - ACCEPT_EULA=Y
+        ports:
+          - "1433:1433"
+        networks:
+           - financial_chat_network
+
+
+    financial_chat_web:
+        image: financial_chat_web:latest
+        container_name: financial_chat_web
+        depends_on:
+            - "sql_server"
+            - "financial_chat_rabbitmq"
+        build:
+            context: .
+            dockerfile: src/FinancialChat.Web/Dockerfile
+        ports:
+            - "8090:80"
+        environment:
+            DB_CONNECTION_STRING: "Server=sql_server,1433;Database=AppDbContext;MultipleActiveResultSets=true;User ID=sa;Password=Pass@word;Integrated Security=false;TrustServerCertificate=false"
+            RABBITMQ_CONNECTION: "rabbitmq://financial_chat_rabbitmq:5672"
+            FINANCIAL_CHAT_STOCK_QUEUE_REQUEST: "financialChatStockQueueRequest"
+            FINANCIAL_CHAT_STOCK_QUEUE_RESPONSE: "financialChatStockQueueResponse"
+            URI_BASE_CHAT: "https://financial_chat_web:8090/chat"
+        networks:
+            - financial_chat_network
+
+    financial_chat_consumer:
+        image: financial_chat_consumer:latest
+        container_name: financial_chat_consumer
+        depends_on:
+            - "financial_chat_rabbitmq"
+        build:
+            context: .
+            dockerfile: src/FinancialChat.Consumer/Dockerfile
+        ports:
+            - "8091:80"
+        environment:
+            RABBITMQ_CONNECTION: "rabbitmq://financial_chat_rabbitmq:5672"
+            FINANCIAL_CHAT_STOCK_QUEUE_REQUEST: "financialChatStockQueueRequest"
+            FINANCIAL_CHAT_STOCK_QUEUE_RESPONSE: "financialChatStockQueueResponse"
+            ASPNETCORE_ENVIRONMENT : "Development"
+        networks:
+            - financial_chat_network
 
     financial_chat_rabbitmq:
         image: masstransit/rabbitmq
@@ -56,4 +72,4 @@ services:
           - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
           - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
         networks:
-          - financial_chat-network
+          - financial_chat_network

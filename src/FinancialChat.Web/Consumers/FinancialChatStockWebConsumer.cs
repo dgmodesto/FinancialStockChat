@@ -2,6 +2,7 @@
 using FinancialChatBackend.Hubs;
 using MassTransit;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace FinancialChat.Web.Consumers
@@ -9,44 +10,23 @@ namespace FinancialChat.Web.Consumers
     public class FinancialChatStockWebConsumer : IConsumer<Message>
     {
         private readonly ILogger<FinancialChatStockWebConsumer> _logger;
-        private HubConnection _connection;
+        private readonly IHubContext<StockChatHub> _notificationHubContext;
 
         public FinancialChatStockWebConsumer(
-            ILogger<FinancialChatStockWebConsumer> logger)
+            ILogger<FinancialChatStockWebConsumer> logger, IHubContext<StockChatHub> notificationHubContext)
         {
             _logger = logger;
-
-            var uri = "https://localhost:7077/chat";
-            _connection = new HubConnectionBuilder()
-                 .WithUrl(uri)
-                 .WithAutomaticReconnect(new[] { TimeSpan.Zero, TimeSpan.Zero, TimeSpan.FromSeconds(10) })
-                 .Build();
-            
+            _notificationHubContext = notificationHubContext;
         }
-
+        ///stock=aapl.us
         public async Task Consume(ConsumeContext<Message> context)
         {
             _logger.LogInformation($"[{nameof(FinancialChatStockWebConsumer)}-{  nameof(Consume) }] : Consuming queue");
             var message = context.Message;
-
-
-            await StartIfNeededAsync();
-            _connection.On<string>("ReceiveMessage", (user) =>
-            {
-            });
-            await _connection.InvokeAsync("SendMessageToGroup", message.UserNameSender, message.UserNameReceive, message.Content);
-
+            
+            _logger.LogInformation($"[{nameof(FinancialChatStockWebConsumer)}-{  nameof(Consume) }] : try to return message for de sender about stock_code");
+            
+            await _notificationHubContext.Clients.Group(message.UserNameReceive).SendAsync("ReceiveMessage", message.UserNameSender, message.Content);
         }
-
-        public async Task StartIfNeededAsync()
-        {
-            if (_connection.State == HubConnectionState.Disconnected)
-            {
-                _connection.StartAsync();
-            }
-        }
-
-
-     
     }
 }

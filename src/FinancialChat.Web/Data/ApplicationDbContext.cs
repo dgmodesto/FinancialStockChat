@@ -14,7 +14,6 @@ namespace FinancialChatBackend.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
 
             // any guid
             const string ADMIN_ID = "3370475C-F265-4CBF-8FDE-07C04FBFF15E";
@@ -29,6 +28,7 @@ namespace FinancialChatBackend.Data
 
             builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
             {
+                
                 RoleId = ROLE_ID,
                 UserId = ADMIN_ID
             });
@@ -46,7 +46,10 @@ namespace FinancialChatBackend.Data
                 SecurityStamp = string.Empty
             });
 
-      
+
+
+            base.OnModelCreating(builder);
+
         }
     }
 }

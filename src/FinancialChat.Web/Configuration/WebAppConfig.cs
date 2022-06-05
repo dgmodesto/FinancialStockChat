@@ -1,7 +1,7 @@
 ﻿using FinancialChatBackend.Data;
 using FinancialChatBackend.Hubs;
-using FinancialChatBackend.Integration;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace FinancialChat.Web.Configuration
@@ -10,33 +10,27 @@ namespace FinancialChat.Web.Configuration
     {
         public static void AddAppConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
-
-
+            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
-            services.AddDatabaseDeveloperPageExceptionFilter();
+            //services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddScoped<ApplicationDbContext>();
-
-
-            services.AddScoped<IStooqIntegrationService, StooqIntegrationService>();
 
 
             services.AddRazorPages();
-            services.AddSignalR();
 
-
+            
         }
 
 
         public static void UseAppConfiguration(this WebApplication app)
         {
-            // Configure the HTTP request pipeline.
+
+            //Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
@@ -48,22 +42,15 @@ namespace FinancialChat.Web.Configuration
                 app.UseHsts();
             }
 
-            using (var scope = app.Services.CreateScope())
-            {
-                var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                //Same as the question
-                db.Database.Migrate();
-            }
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-            app.MapHub<StockChatHub>("/chat");
-
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.MapHub<StockChatHub>("/chat");
             app.MapRazorPages();
 
         }

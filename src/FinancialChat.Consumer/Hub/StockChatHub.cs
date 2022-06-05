@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace FinancialChatConsumer.Hub
 {
+
     public  class StockChatHub
     {
         static HubConnection _connection;
@@ -17,7 +18,7 @@ namespace FinancialChatConsumer.Hub
             Console.WriteLine("Iniciando conexão no signalR");
 
 
-            var uri = "https://localhost:5077/chat";
+            var uri = Environment.GetEnvironmentVariable("URI_BASE_CHAT");
 
             _connection = new HubConnectionBuilder()
                     .WithUrl(uri)

@@ -51,4 +51,5 @@ namespace FinancialChat.Web.Configuration
 
         }
     }
+
 }

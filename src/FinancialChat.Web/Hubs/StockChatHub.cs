@@ -9,15 +9,12 @@ namespace FinancialChatBackend.Hubs
     {
 
         public static Queue<Message> Messages;
-        private readonly IStooqIntegrationService _stooqIntegrationService;
         private readonly IFinancialChatService _financialChatService;
-        public StockChatHub(IStooqIntegrationService stooqIntegrationService, IFinancialChatService financialChatService)
+        public StockChatHub(IFinancialChatService financialChatService)
         {
 
             if (Messages == null)
                 Messages = new Queue<Message>();
-
-            _stooqIntegrationService = stooqIntegrationService;
             _financialChatService = financialChatService;
         }
 
@@ -76,7 +73,7 @@ namespace FinancialChatBackend.Hubs
             }
 
         }
-        private void AddMessageToHistory(string userNameSender, string userNameReceive, string content)
+        public void AddMessageToHistory(string userNameSender, string userNameReceive, string content)
         {
             var message = new Message(content, userNameSender, userNameReceive);
             const int HISTORY_MESSAGE_LIMIT = 50;

@@ -60,10 +60,9 @@ $("#sendMessage").click(function () {
             return console.error(err.toString());
         });
     }
-
+    $("#message").val("");
 
     event.preventDefault();
-
 });
 
 
@@ -73,3 +72,6 @@ $('#chat').click(function () {
     $('html, body').animate({ scrollTop: $(document).height() }, 'slow');
     return false;
 });
+
+
+
