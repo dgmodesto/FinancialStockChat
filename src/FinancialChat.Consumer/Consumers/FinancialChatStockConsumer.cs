@@ -14,8 +14,8 @@ namespace FinancialChat.Consumer.Consumers
 
 
         public FinancialChatStockConsumer(
-            ILogger<FinancialChatStockConsumer> logger, 
-            IStooqIntegrationService stooqIntegrationService, 
+            ILogger<FinancialChatStockConsumer> logger,
+            IStooqIntegrationService stooqIntegrationService,
             IFinancialChatService financialChatService)
         {
             _logger = logger;
@@ -28,12 +28,21 @@ namespace FinancialChat.Consumer.Consumers
             _logger.LogInformation($"[{nameof(FinancialChatStockConsumer)}-{  nameof(Consume) }] : Consuming queue");
             var message = context.Message;
 
-            var stock = await _stooqIntegrationService.GetStockByCodeAsync(message.Content);
-            
-            var newMessage = new Message(stock, message.UserNameSender, message.UserNameReceive);
+            if (string.IsNullOrEmpty(message.Content))
+            {
+                var messageError = $"sorry, the stock_code can't be empty, please, input a stock code and try again."; ;
+                var newMessage = new Message(messageError, message.UserNameSender, message.UserNameReceive);
+                await _financialChatService.SendResponseStockByCode(newMessage);
 
-            await _financialChatService.SendResponseStockByCode(newMessage);
-            
+            }
+            else
+            {
+                var stock = await _stooqIntegrationService.GetStockByCodeAsync(message.Content);
+                var newMessage = new Message(stock, message.UserNameSender, message.UserNameReceive);
+                await _financialChatService.SendResponseStockByCode(newMessage);
+            }
+
+
         }
 
     }

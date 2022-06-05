@@ -21,7 +21,9 @@ namespace FinancialChat.Integration.Integrations
             if (values[3] == "N/D")
                 return $"sorry, I can't find the { stockCode}, please, verify if the stock code is correct";
 
-            var response = $"{values[0]} quote is {values[3]} per share";
+            var stockCodeDescription = values[0];
+            var valueFormat = String.Format("{0:C}", Convert.ToDecimal(values[3])); 
+            var response = $"{ stockCodeDescription} quote is {valueFormat} per share";
 
             return response;
         }
