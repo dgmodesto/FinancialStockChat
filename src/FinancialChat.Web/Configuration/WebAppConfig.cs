@@ -21,9 +21,11 @@ namespace FinancialChat.Web.Configuration
 
 
 
+
+            services.AddMemoryCache();
             services.AddRazorPages();
 
-            
+
         }
 
 

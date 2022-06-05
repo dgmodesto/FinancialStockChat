@@ -38,6 +38,7 @@ services:
             FINANCIAL_CHAT_STOCK_QUEUE_REQUEST: "financialChatStockQueueRequest"
             FINANCIAL_CHAT_STOCK_QUEUE_RESPONSE: "financialChatStockQueueResponse"
             URI_BASE_CHAT: "https://financial_chat_web:8090/chat"
+            BOT_USER_NAME: "bot@financialchat.com"
         networks:
             - financial_chat_network
 

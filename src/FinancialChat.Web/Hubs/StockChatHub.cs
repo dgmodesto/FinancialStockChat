@@ -1,29 +1,40 @@
 ﻿using FinancialChat.Application.Interfaces;
 using FinancialChat.Domain.Models;
+using FinancialChat.Web.Data.Cache;
 using FinancialChatBackend.Integration;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Caching.Memory;
+using System.Collections;
+using System.Reflection;
 
 namespace FinancialChatBackend.Hubs
 {
     public class StockChatHub : Hub
     {
 
-        public static Queue<Message> Messages;
+        //public static Queue<Message> Messages;
         private readonly IFinancialChatService _financialChatService;
-        public StockChatHub(IFinancialChatService financialChatService)
+        private readonly IMemoryCache _memoryCache;
+
+        public StockChatHub(IFinancialChatService financialChatService, IMemoryCache memoryCache)
         {
 
-            if (Messages == null)
-                Messages = new Queue<Message>();
+
+
+            var items = new List<string>();
+            //if (Messages == null)
+            //    Messages = new Queue<Message>();
             _financialChatService = financialChatService;
+            _memoryCache = memoryCache;
         }
 
 
         public override Task OnConnectedAsync()
         {
-            SendHistoryMessages();
 
             var userName = Context.User.Identity.Name == null ? "bot@financialchat.com" : Context.User.Identity.Name;
+
+            SendHistoryMessages(userName);
 
             Groups.AddToGroupAsync(Context.ConnectionId, userName);
             return base.OnConnectedAsync();
@@ -33,31 +44,57 @@ namespace FinancialChatBackend.Hubs
             //message send to all users
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
-        public  Task SendMessageToGroup(string sender, string receiver, string message)
+        public Task SendMessageToGroup(string sender, string receiver, string message)
         {
-            if(IsMessageComand(message))
+            if(IsValidMessage(sender, receiver, message))
             {
-                var newReceiver = sender;
-                var newSenderBot = "bot@financialchat.com";
-                var stockCode = message.Split("=")[1];
-                //var stock = _stooqIntegrationService.GetStockByCode(stockCode).Result;
-                //var newMessage = stock;
+                _memoryCache.AddMessageToHistory(sender, sender, message);
 
-                var requestMessage = new Message(stockCode, newSenderBot, newReceiver);
-                _financialChatService.SendRequestStockByCode(requestMessage);
+                if (IsMessageComand(message))
+                {
+                    var stockCode = message.Split("=")[1];
+                    var requestMessage = new Message(stockCode, sender, receiver);
+                    _financialChatService.SendRequestStockByCode(requestMessage);
 
-                string newMessage = "please, give me a second, I will get the information about the stock code for you.";
-                AddMessageToHistory(newSenderBot, newReceiver, newMessage);
-                return Clients.Group(newReceiver).SendAsync("ReceiveMessage", newSenderBot, newMessage);
+                    message = "please, give me a second, I will get the information about the stock code to you.";
+                    return BotSendMessageToGroup(sender, message);
+                }
+
+                //message send to receiver only
+                _memoryCache.AddMessageToHistory(sender, receiver, message);
+
+                if (Clients == null)
+                    return Task.CompletedTask;
+
+                return Clients.Group(receiver).SendAsync("ReceiveMessage", sender, message);
+
+            } else
+            {
+                message = "Sorry, but I can't understand your message, try again please";
+                return BotSendMessageToGroup(sender, message);
             }
 
-            //message send to receiver only
-            AddMessageToHistory(sender, receiver, message);
+        }
 
-            if (Clients == null)
-                return Task.CompletedTask;
+        private Task BotSendMessageToGroup(string receiver, string message)
+        {
+            string sender = Environment.GetEnvironmentVariable("BOT_USER_NAME") ?? "UNKOWN_USER";
 
+            _memoryCache.AddMessageToHistory(sender, receiver, message);
             return Clients.Group(receiver).SendAsync("ReceiveMessage", sender, message);
+        }
+
+        private bool IsValidMessage(string sender, string receiver, string message)
+        {
+            if(string.IsNullOrEmpty(sender) ||
+                string.IsNullOrEmpty(receiver) ||
+                string.IsNullOrEmpty(message) 
+                )
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private bool IsMessageComand(string message)
@@ -65,23 +102,18 @@ namespace FinancialChatBackend.Hubs
             return (message.ToLower().Contains("/stock=")) ? true : false;
         }
 
-        private void SendHistoryMessages()
+        private void SendHistoryMessages(string key)
         {
-            foreach (var message in Messages)
+            Queue<Message> historyMessages;
+            if (_memoryCache.TryGetValue(key, out historyMessages))
             {
-                Clients.Client(Context.ConnectionId).SendAsync("ReceiveMessage", message.UserNameSender, message.Content);
+                foreach (var message in historyMessages)
+                {
+                    Clients.Client(Context.ConnectionId).SendAsync("ReceiveMessage", message.UserNameSender, message.Content);
+                }
             }
 
         }
-        public void AddMessageToHistory(string userNameSender, string userNameReceive, string content)
-        {
-            var message = new Message(content, userNameSender, userNameReceive);
-            const int HISTORY_MESSAGE_LIMIT = 50;
-            
-            if(Messages.Count == HISTORY_MESSAGE_LIMIT)
-                Messages.Dequeue();
 
-            Messages.Enqueue(message);
-        }
     }
 }

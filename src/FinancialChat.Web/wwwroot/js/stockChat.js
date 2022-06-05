@@ -5,18 +5,22 @@ $("#sendMessage").prop('disabled', true);
 
 connection.on("ReceiveMessage", function (user, message) {
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    var encodedMsg = user + " says " + msg;
+    var encodedMsg = "";;
     var li = document.createElement("li");
 
     var sender = $("#sender").val();
 
 
-    if (encodedMsg.includes(sender)) {
+    if (user.includes(sender)) {
+        var encodedMsg = msg + " - ( " + user + " )";
+        
         li.className = 'list-group-item list-group-item-info d-flex justify-content-end';
     }
-    else if (encodedMsg.includes('bot')) {
+    else if (user.includes('bot')) {
+        var encodedMsg = "( " + user + " ) - " + msg;
         li.className = 'list-group-item list-group-item-danger';
     } else {
+        var encodedMsg = "( " + user + " ) - " + msg;
         li.className = 'list-group-item list-group-item-warning';
     }
 
@@ -40,7 +44,7 @@ $("#sendMessage").click(function () {
 
 
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    var encodedMsg = sender + " says " + msg;
+    var encodedMsg = msg + " - ( " + sender + " )";
     var li = document.createElement("li");
     li.className = 'list-group-item list-group-item-info d-flex justify-content-end';
 
