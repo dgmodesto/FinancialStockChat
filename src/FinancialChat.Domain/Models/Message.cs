@@ -8,6 +8,10 @@ namespace FinancialChat.Domain.Models
 {
     public class Message
     {
+        public Message()
+        {
+
+        }
         public Message(string content, string userNameSender, string userNameReceive)
         {
             Content = content;

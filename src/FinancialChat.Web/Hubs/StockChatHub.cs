@@ -1,7 +1,6 @@
 ﻿using FinancialChat.Application.Interfaces;
 using FinancialChat.Domain.Models;
 using FinancialChat.Web.Data.Cache;
-using FinancialChatBackend.Integration;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Caching.Memory;
 using System.Collections;
@@ -40,7 +39,7 @@ namespace FinancialChatBackend.Hubs
         {
             if (IsValidMessage(sender, receiver, message))
             {
-                _memoryCache.AddMessageToHistory(sender, sender, message);
+                _memoryCache.AddMessageToHistory(sender, receiver, message);
 
                 if (IsMessageComand(message))
                 {
@@ -53,6 +52,7 @@ namespace FinancialChatBackend.Hubs
                     var messageAr = message.Split("=");
                     var stockCode = messageAr[1];
                     var requestMessage = new Message(stockCode, sender, receiver);
+                    
                     _financialChatService.SendRequestStockByCode(requestMessage);
 
                     message = "please, give me a second, I will get the information about the stock code to you.";

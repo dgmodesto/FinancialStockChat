@@ -28,22 +28,32 @@ namespace FinancialChat.Consumer.Consumers
             _logger.LogInformation($"[{nameof(FinancialChatStockConsumer)}-{  nameof(Consume) }] : Consuming queue");
             var message = context.Message;
 
-            if (string.IsNullOrEmpty(message.Content))
+            if (IsValidMessage(message))
             {
-                var messageError = $"sorry, the stock_code can't be empty, please, input a stock code and try again."; ;
-                var newMessage = new Message(messageError, message.UserNameSender, message.UserNameReceive);
-                await _financialChatService.SendResponseStockByCode(newMessage);
+                var stock = await _stooqIntegrationService.GetStockByCodeAsync(message.Content);
+                message.Content = stock;
+                await _financialChatService.SendResponseStockByCode(message);
 
             }
             else
             {
-                var stock = await _stooqIntegrationService.GetStockByCodeAsync(message.Content);
-                var newMessage = new Message(stock, message.UserNameSender, message.UserNameReceive);
-                await _financialChatService.SendResponseStockByCode(newMessage);
+                var messageError = $"sorry, the stock_code can't be empty, please, input a stock code and try again.";
+                message.Content = messageError;
+                await _financialChatService.SendResponseStockByCode(message);
             }
-
-
         }
 
+        private bool IsValidMessage(Message message)
+        {
+            if (message == null) return false;
+            else if (
+                string.IsNullOrEmpty(message.Content) ||
+                string.IsNullOrEmpty(message.UserNameSender) ||
+                string.IsNullOrEmpty(message.UserNameReceive)
+                )
+                return false;
+
+            return true;
+        }
     }
 }
