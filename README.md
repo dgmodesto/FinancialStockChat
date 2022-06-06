@@ -30,7 +30,7 @@
 - [x] Apply InMemory Configuratino at Backend to Handle with the historical chat message
 - [x] Apply Docker Configuration at Web Project 
 - [x] Apply Docker Configuration at Consumer Project
-- [x] Integrate with Stooq's API fot get the information about the stock_code 
+- [x] Integrate with Stooq's API for get the information about the stock_code 
 - [x] Implement function for send message by Chat Bot 
 - [x] Implement Unit Test
 
@@ -89,9 +89,11 @@ docker-compose up
 To use FinancialChatBackend, follow these steps:
 
 ```
-1 - open the browser
-2 - input this address: http:localhost:8090
-
+step 0 - input this address: http:localhost:8090 in Browser
+step 1 - click in the register button
+step 2 - register a new user
+step 3 - click in the login button
+step 4 - you will redirect to logged area and you'll see the chat
 ```
 
 > you will see something like this
@@ -99,7 +101,7 @@ To use FinancialChatBackend, follow these steps:
 
 
 
-Adicione comandos de execução e exemplos que você acha que os usuários acharão úteis. Fornece uma referência de opções para pontos de bônus!
+
 
 
 [⬆ Voltar ao topo](#FinancialChatBackend)<br>
