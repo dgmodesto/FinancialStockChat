@@ -65,7 +65,7 @@
 
 Before starting, make sure you've met the following requirements:
 <!---Estes são apenas requisitos de exemplo. Adicionar, duplicar ou remover conforme necessário--->
-* You need to have installed on your machine.`<docker>` e `<docker-compose>`
+* You need to have installed on your machine.`<docker>` and `<docker-compose>`
 
 
 ## 🚀 Deploying / Publishing FinancialChatBackend
