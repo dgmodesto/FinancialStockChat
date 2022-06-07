@@ -48,6 +48,7 @@ namespace FinancialChat.Application.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError($"[{nameof(FinancialChatService)}-{nameof(SendResponseStockByCode) }] : Error when send to queue - Error Description: { ex.Message }");
 
                 throw ex;
             }

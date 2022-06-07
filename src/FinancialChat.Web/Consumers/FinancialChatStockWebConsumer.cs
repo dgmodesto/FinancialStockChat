@@ -22,6 +22,8 @@ namespace FinancialChat.Web.Consumers
             _notificationHubContext = notificationHubContext;
             _memoryCache = memoryCache;
         }
+
+
         ///stock=aapl.us
         public Task Consume(ConsumeContext<Message> context)
         {
@@ -30,7 +32,7 @@ namespace FinancialChat.Web.Consumers
 
             string sender = Environment.GetEnvironmentVariable("BOT_USER_NAME") ?? "UNKOWN_USER";
             _logger.LogInformation($"[{nameof(FinancialChatStockWebConsumer)}-{  nameof(Consume) }] : try to return message for de sender about stock_code");
-            _memoryCache.AddMessageToHistory(sender, message.UserNameSender, message.Content);
+            //_memoryCache.AddMessageToHistory(sender, message.UserNameSender, message.Content);
             return _notificationHubContext.Clients.Group(message.UserNameSender).SendAsync("ReceiveMessage", sender, message.Content);
         }
     }

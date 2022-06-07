@@ -70,5 +70,29 @@ namespace FinancialChat.Test.Infrastructure.Integrations.StooqIntegrationService
 
         }
 
+        [Fact(DisplayName = "RevenueKindsService_GetStockByCodeAsync_ThrowException")]
+        public async Task RevenueKindsService_GetStockByCodeAsync_ThrowException()
+        {
+
+
+            //Arrange
+            using (var httpTest = new HttpTest())
+            {
+                var stock_code = new Faker().Random.Word();
+                var response = "";
+                string expectedResult = "sorry, happened something, try again in some few minutes";
+                httpTest.RespondWith(response);
+
+
+                //Act
+                string result = await _integration.GetStockByCodeAsync(stock_code);
+
+                //Assert
+                Assert.Contains(expectedResult, result);
+            }
+
+
+        }
+
     }
 }

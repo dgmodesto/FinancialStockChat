@@ -30,6 +30,7 @@ namespace FinancialChat.Consumer.Consumers
 
             if (IsValidMessage(message))
             {
+                _logger.LogInformation($"[{nameof(FinancialChatStockConsumer)}-{  nameof(Consume) }] : Valid Command  Message");
                 var stock = await _stooqIntegrationService.GetStockByCodeAsync(message.Content);
                 message.Content = stock;
                 await _financialChatService.SendResponseStockByCode(message);
@@ -37,6 +38,7 @@ namespace FinancialChat.Consumer.Consumers
             }
             else
             {
+                _logger.LogInformation($"[{nameof(FinancialChatStockConsumer)}-{  nameof(Consume) }] : Inalid Command Message");
                 var messageError = $"sorry, the stock_code can't be empty, please, input a stock code and try again.";
                 message.Content = messageError;
                 await _financialChatService.SendResponseStockByCode(message);
