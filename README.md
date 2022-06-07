@@ -101,7 +101,17 @@ step 4 - you will redirect to logged area and you'll see the chat
 
 
 
+## ☕ Using RabbitMQ
 
+To use FinancialChatBackend, follow these steps:
 
+```
+step 0 - input this address: http:localhost:15672 in Browser
+step 1 - enter with credentials: User: guest | Password: guest
+
+```
+
+> you will see something like this
+<img src="./assets/rabbit-mq-screen.png" alt="Architecture drawing">
 
 [⬆ Voltar ao topo](#FinancialChatBackend)<br>
