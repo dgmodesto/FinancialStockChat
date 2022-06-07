@@ -114,4 +114,4 @@ step 1 - enter with credentials: User: guest | Password: guest
 > you will see something like this
 <img src="./assets/rabbit-mq-screen.png" alt="Architecture drawing">
 
-[⬆ Voltar ao topo](#FinancialChatBackend)<br>
+<!-- [⬆ Voltar ao topo](#FinancialChatBackend)<br> -->
